@@ -43,7 +43,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
       initial="initial"
       animate="animate"
       exit="initial"
-      className="h-screen w-full fixed top-0 left-0 bg-gray-900/90"
+      className="h-screen z-50 w-full fixed top-0 left-0 bg-gray-900/90"
     >
       <h1
         onClick={toogleModal}
