@@ -80,7 +80,7 @@ const Home: React.FC<HomeProps> = () => {
   }, []);
 
   return (
-    <div className="px-3 sm:px-6 xl:px-16 mb-16 mt-28">
+    <div className="px-3 sm:px-6 xl:px-16 mb-16 mt-20 lg:mt-28">
       {/* =========== Header ========== */}
       <div className="h-auto lg:h-[35rem] block lg:flex gap-5">
         <div className="h-[35rem] w-full lg:w-[75%]">
@@ -119,7 +119,7 @@ const Home: React.FC<HomeProps> = () => {
                         style={{
                           boxShadow: '0px 0px 192px 127px rgba(0,0,0,0.67)',
                         }}
-                        className="w-[50%] bg-black/60 z-10"
+                        className="w-full sm:w-[75%] md:w-[50%] bg-black/60 z-10"
                       >
                         <h1>Home | TV</h1>
                         <h1 className="text-4xl my-3 font-extrabold">

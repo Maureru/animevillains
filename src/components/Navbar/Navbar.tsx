@@ -168,7 +168,40 @@ const Navbar: React.FC<NavbarProps> = () => {
             />
           ) : null}
         </AnimatePresence>
-        <div>
+        <div className="relative">
+          {search && isSearchedOpen ? (
+            <div
+              ref={searchedRef}
+              className="flex flex-col gap-2 absolute top-[110%] left-2 p-2 w-[300px] h-auto bgGray"
+            >
+              {isLoading && (
+                <TbRefresh className="animate-spin mx-auto text-2xl" />
+              )}
+
+              {searched.map((obj, i: number) => (
+                <Link key={i} to={`/anime/${obj.mal_id}`}>
+                  <div className="flex gap-2 p-2 hover:bg-gray-900 cursor-pointer items-center">
+                    <div
+                      style={{
+                        backgroundImage: `url(${obj.images.webp.large_image_url})`,
+                      }}
+                      className="w-10 h-12 rounded-sm bg-cover bg-center"
+                    ></div>
+                    <div>
+                      <h1 className="font-bold">
+                        {obj.title.length > 20
+                          ? `${obj.title.slice(0, 20)}...`
+                          : obj.title}
+                      </h1>
+                      <h1 className="text-[0.7rem] text-gold">
+                        Rating: {obj.score}/10
+                      </h1>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : null}
           <Search
             search={search}
             searchOnChangeHandler={searchOnChangeHandler}
