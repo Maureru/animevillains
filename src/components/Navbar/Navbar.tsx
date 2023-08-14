@@ -48,6 +48,14 @@ const Navbar: React.FC<NavbarProps> = () => {
     setIsModalOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
+  }, [isModalOpen]);
+
   const closeSearchedOnOutsideClick = (e: MouseEvent) => {
     if (!searchedRef.current?.contains(e.target as Node)) {
       setIsSearchedOpen(false);
