@@ -42,6 +42,7 @@ const Navbar: React.FC<NavbarProps> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSearchedOpen, setIsSearchedOpen] = useState<boolean>(false);
   const searchedRef = useRef<HTMLDivElement>(null);
+  const searchedRefB = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const toogleModal = () => {
@@ -57,7 +58,10 @@ const Navbar: React.FC<NavbarProps> = () => {
   }, [isModalOpen]);
 
   const closeSearchedOnOutsideClick = (e: MouseEvent) => {
-    if (!searchedRef.current?.contains(e.target as Node)) {
+    if (
+      !searchedRef.current?.contains(e.target as Node) &&
+      !searchedRefB.current?.contains(e.target as Node)
+    ) {
       setIsSearchedOpen(false);
     }
   };
@@ -106,7 +110,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         <div className="relative">
           {search && isSearchedOpen ? (
             <div
-              ref={searchedRef}
+              ref={searchedRefB}
               className="flex flex-col gap-2 absolute top-[110%] left-2 p-2 w-[300px] h-auto bgGray"
             >
               {isLoading && (
