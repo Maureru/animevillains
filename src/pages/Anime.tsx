@@ -1,16 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsFillPlayCircleFill } from 'react-icons/bs';
 import { useLoaderData } from 'react-router-dom';
 import { Loaders } from '../types';
+import VideoModal from '../components/VideoPlayer/VideoModal';
+import { AnimatePresence } from 'framer-motion';
 
 interface AnimeProps {}
 
 const Anime: React.FC<AnimeProps> = () => {
   const { anime, characters } = useLoaderData() as Loaders;
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState<boolean>(false);
+
+  const toogleModal = () => {
+    setIsVideoModalOpen((prev) => !prev);
+  };
 
   useEffect(() => {
     return () => window.scrollTo({ top: 0, left: 0 });
   }, []);
+
+  useEffect(() => {
+    if (isVideoModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
+  }, [isVideoModalOpen]);
 
   return (
     <div className="mb-4">
@@ -23,6 +38,14 @@ const Anime: React.FC<AnimeProps> = () => {
         >
           <div className="w-full h-full absolute top-0 left-0 z-10 bg-black/90" />
         </div>
+        <AnimatePresence>
+          {isVideoModalOpen ? (
+            <VideoModal
+              toogleModal={toogleModal}
+              videoUrl={anime.data.trailer.url}
+            />
+          ) : null}
+        </AnimatePresence>
 
         <div className="h-auto xl:h-[38rem] relative z-20 lg:flex gap-8">
           <div
@@ -66,7 +89,10 @@ const Anime: React.FC<AnimeProps> = () => {
                 <h1>{anime.data.status}</h1>
               </div>
             </div>
-            <div className="py-6 px-8  bgGray rounded-md cursor-pointer">
+            <div
+              onClick={toogleModal}
+              className="py-6 px-8  bgGray rounded-md cursor-pointer"
+            >
               <div className="flex gap-3 items-center">
                 <h1 className="text-3xl">
                   <BsFillPlayCircleFill />

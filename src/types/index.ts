@@ -13,7 +13,7 @@ type AnimeType = {
 type Loaders = {
     anime: {
       data: {
-        trailer: { images: { maximum_image_url: string } };
+        trailer: { images: { maximum_image_url: string }, url: string };
         images: { webp: { large_image_url: string } };
         title: string;
         episodes: number;
