@@ -170,7 +170,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       </div>
 
       {/* ========== For Mobile ========== */}
-      <div className="absolute w-full xl:hidden py-4 top-0 left-0 z-50 flex items-center justify-between px-3 sm:px-6">
+      <div className="fixed bg w-full xl:hidden py-4 top-0 left-0 z-50 flex items-center justify-between px-3 sm:px-6">
         <AnimatePresence>
           {isModalOpen ? (
             <MobileMenu
