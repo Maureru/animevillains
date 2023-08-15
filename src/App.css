@@ -8,6 +8,12 @@ body {
 
 .bg {
     background-color: #0D0D0D;
+    transition: 0.5s ease-in-out ;
+}
+
+.bgTransparent {
+    background-color: transparent;
+    transition: 0.5s ease-in-out ;
 }
 
 body::-webkit-scrollbar {

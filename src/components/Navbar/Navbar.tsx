@@ -100,6 +100,22 @@ const Navbar: React.FC<NavbarProps> = () => {
     }
   };
 
+  const changeMenuBgOnScroll = () => {
+    if (window.scrollY > 80) {
+      document.getElementById('menu')?.classList.add('bg');
+      document.getElementById('menu')?.classList.remove('bgTransparent');
+    } else {
+      document.getElementById('menu')?.classList.remove('bg');
+      document.getElementById('menu')?.classList.add('bgTransparent');
+    }
+  };
+
+  useEffect(() => {
+    addEventListener('scroll', changeMenuBgOnScroll);
+
+    return () => removeEventListener('scroll', changeMenuBgOnScroll);
+  }, []);
+
   return (
     <div>
       {/* ====== For large Screen ==== */}
@@ -170,7 +186,10 @@ const Navbar: React.FC<NavbarProps> = () => {
       </div>
 
       {/* ========== For Mobile ========== */}
-      <div className="fixed bg w-full xl:hidden py-4 top-0 left-0 z-50 flex items-center justify-between px-3 sm:px-6">
+      <div
+        id="menu"
+        className="fixed w-full xl:hidden py-4 top-0 left-0 z-50 flex items-center justify-between px-3 sm:px-6"
+      >
         <AnimatePresence>
           {isModalOpen ? (
             <MobileMenu
